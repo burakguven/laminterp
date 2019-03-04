@@ -1,0 +1,30 @@
+app
+    app
+        lam fix app
+            lam rec
+                lam n app app app rec n 0 1
+            app
+                fix
+                lam f lam n lam a lam b app
+                    app app app
+                        if
+                        app app gt n 0
+                        lam x app app app
+                            f
+                            app app add n -1
+                            b
+                            app app add a b
+                        lam x a
+                    false
+        lam f app
+            lam x app
+                f
+                lam y app
+                    app x x
+                    y
+            lam x app
+                f
+                lam y app
+                    app x x
+                    y
+    500

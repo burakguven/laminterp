@@ -1,0 +1,44 @@
+app
+    app
+        lam fix app
+            lam mul app
+                fix
+                lam f lam n app
+                    app app app
+                        if app app gt n 0
+                        lam x
+                            app app
+                                mul
+                                n
+                                app
+                                    f
+                                    app app add n -1
+                        lam x 1
+                    false
+            app
+                fix
+                lam f lam a lam b app
+                    app app app
+                        if
+                        app app gt b 0
+                        lam x app app
+                            add
+                            a
+                            app app
+                                f
+                                a
+                                app app add b -1
+                        lam x 0
+                    false
+        lam f app
+            lam x app
+                f
+                lam y app
+                    app x x
+                    y
+            lam x app
+                f
+                lam y app
+                    app x x
+                    y
+    7

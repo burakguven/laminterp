@@ -1,0 +1,27 @@
+app
+    app lam fix app
+        fix
+        lam f lam n app
+            app app app
+                if
+                app app gt n 0
+                lam x app app
+                    add
+                    n
+                    app
+                        f
+                        app app add n -1
+                lam x 0
+            false
+    lam f app
+        lam x app
+            f
+            lam y app
+                app x x
+                y
+        lam x app
+            f
+            lam y app
+                app x x
+                y
+    100
