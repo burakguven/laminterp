@@ -1,5 +1,7 @@
 # laminterp
 
+[![Build Status](https://travis-ci.org/burakguven/laminterp.svg?branch=master)](https://travis-ci.org/burakguven/laminterp)
+
 Interpreter for a programming language based on [lambda calculus](https://en.wikipedia.org/wiki/Lambda_calculus).
 
 ## Installation
