@@ -1,15 +1,43 @@
-laminterp
-===========
+# laminterp
 
 Interpreter for a programming language based on [lambda calculus](https://en.wikipedia.org/wiki/Lambda_calculus).
+
+## Installation
+
+Install by running the following command ([Go](https://golang.org/dl/) needs to be installed):
+
+```
+go get github.com/burakguven/laminterp
+```
+
+## Usage
+
+After installation, there should be a binary named `laminterp` in the `$GOPATH/bin` directory (`$HOME/go/bin` by default). When run in a terminal without any arguments, `laminterp` is an interactive shell similar to what you might be familiar with from other interpreted programming languages. Here's an example session:
+
+```
+$ laminterp
+>> app app add 1 2
+3
+>> app app gt 1 2
+false
+>> app app app if (app app gt 1 2) 3 4
+4
+```
+
+When run with a file name, it runs the given program:
+
+```
+$ laminterp examples/fibonacci
+139423224561697880139724382870407283950070256587697307264108962948325571622863290691557658876222521294125
+```
 
 ## A Short Tour
 
 This language is very simple. There are only a few main categories of syntax:
 
-* Literals like `5` or `true`.
-* Function application, which is written as `app <function> <argument>`.
-* Lambda functions, which are written as `lam <binding> <body>`.
+* Literals like `5` or `true`
+* Function application, which is written as `app <function> <argument>`
+* Lambda functions, which are written as `lam <binding> <body>`
 
 ### Literals
 
@@ -23,7 +51,7 @@ There are only two types of literals: **booleans**, and **numbers** (arbitrary-p
 app app add 1 2
 ```
 
-Note that functions can take only one argument. Functions that effectively have multiple arguments can be created with [currying](https://en.wikipedia.org/wiki/Currying). So in the above example, `add` doesn't actually take two arguments. Instead, `app add 1` returns another function that adds `1` to its argument. Said another way, the example might be rewritten more explicitly as:
+Note that functions can take only one argument. Functions that effectively take multiple arguments can be created with [currying](https://en.wikipedia.org/wiki/Currying). So in the above example, `add` doesn't actually take two arguments. Instead, `app add 1` returns another function that adds `1` to its argument. Said another way, the example might be rewritten more explicitly as:
 
 ```
 app (app add 1) 2
@@ -37,7 +65,7 @@ The other main construct in this language is the lambda function. It looks like 
 lam x x
 ```
 
-The first argument to lam is the function's parameter (also called the "binding"), and the second argument is the body of the function. The function given above is the identity function which returns whatever is passed to it. So for example, the value of the following expression is `7`:
+The first argument to `lam` is the function's parameter (also called the "binding"), and the second argument is the body of the function. The function given above is the identity function which returns whatever is passed to it. So for example, the value of the following expression is `7`:
 
 ```
 app lam x x 7
@@ -48,8 +76,8 @@ app lam x x 7
 There are only a few built-in functions:
 
 * `add`: adds two integers.
-* `if`: branches on a bool. If the first argument (a `boolean`) is true, it returns the second argument, otherwise the third.
-* `gt`: returns true if the first argument is greater than the second.
+* `if`: branches on a bool. If the first argument (the bool) is `true`, it returns the second argument, otherwise the third.
+* `gt`: returns `true` if the first argument is greater than the second, `false` otherwise.
 
 For example, the value of the following program is `4`.
 ```
@@ -58,7 +86,7 @@ app app app if (app app gt 1 2) 3 4
 
 ## An Example Program
 
-The following program computes Fibonacci numbers:
+The following program computes the 500<sup>th</sup> Fibonacci number:
 
 ```
    1   app
@@ -106,33 +134,6 @@ The program is a little more complex than it would be in other languages mainly 
 You can see the fixed-point combinator (technically the [strict version](https://en.wikipedia.org/wiki/Fixed-point_combinator#Strict_fixed_point_combinator)) on lines 19-29, and the semi-recursive fibonacci function on lines 8-18. We apply that semi-recursive function to the fixed-point combinator in order to get an actually recursive function. The rest is just passing in the initial values (seen on lines 4-5). Finally, we call the resulting function with the value `500` on line 30.
 
 There are more example programs in the `examples` folder.
-
-## Installation
-
-```
-go get github.com/burakguven/laminterp
-```
-
-## Usage
-
-After installation, there should be a binary named `laminterp` in the `$GOPATH/bin` directory. When run in a terminal without any arguments, this is an interactive shell that you might be familiar with from other interpreted programming languages. Here's an example session:
-
-```
-$ laminterp
->> app app add 1 2
-3
->> app app gt 1 2
-false
->> app app app if (app app gt 1 2) 3 4
-4
-```
-
-When run with a file name, it runs the given program:
-
-```
-$ laminterp examples/fibonacci
-139423224561697880139724382870407283950070256587697307264108962948325571622863290691557658876222521294125
-```
 
 ## Acknowledgements
 
